@@ -75,36 +75,36 @@ View(totaldata)
 
 
 ```{r code}
-#prepare data for binomial regression
-
-tdata <- change
+##prepare data for binomial regression
 
 #create dummy variables, with d after original column names to correspond to dummy in order to not change original data
 
-tdata$MHd <-ifelse(tdata$MH == "Yes", 1, 0) #make a dummy variable for mental health, with 1 equivalent to yes
-tdata$PHd <- ifelse(tdata$PH == "Yes", 1, 0) #make a dummy variable for physical health, with 1 equivalent to yes
-tdata$Beliefd <- ifelse(tdata$Belief == "Yes", 1, 0) #make a dummy variable for belief, with 1 equivalent to yes
+tdata$MHd <-ifelse(tdata$MH == "Y", 1, 0) #make a dummy variable for mental health, with 1 equivalent to yes
+tdata$PHd <- ifelse(tdata$PH == "Y", 1, 0) #make a dummy variable for physical health, with 1 equivalent to yes
+tdata$Beliefd <- ifelse(tdata$Belief == "Y", 1, 0) #make a dummy variable for belief, with 1 equivalent to yes
 
+tdata$MHd
 
 #carry out binomial regression
 
-m1 <- glm(Beliefd ~ PHd, family = binomial, data = tdata) #regress impact of physical health
+m1 <- glm(Beliefd ~ PHd, family = binomial, data = tdata) #regress impact of physical health 
 
-m2 <- glm(Beliefd ~ MHd, family = binomia, data = tdata) #regress impact of mental health
+m2 <- glm(Beliefd ~ MHd, family = binomial, data = tdata) #regress impact of mental health
 
 m3 <- glm(Beliefd ~ PHd + MHd, family = binomial, data = tdata) #regress impact of physical AND mental health
 
 
-table(summary(m1)) # table for impact of physical health on belief 
-table(summary(m2)) #table for impact of mental health on belief
-table(summary(m3)) # table for impact of physical and mental health on belief
+
+(summary(m1)) # table for impact of physical health on belief 
+(summary(m2)) #table for impact of mental health on belief
+(summary(m3)) # table for impact of physical and mental health on belief
 
 #interpretation - belief yes, they believe their condition will get worse, 
 
 ```
 
 
-This analysis found that individuals with on-going health issues DO/DO NOT change believe their condition will get worse while waiting for treatment
+This analysis found no significant evidence that individuals with on-going health issues  change believe their condition will get worse while waiting for treatment - there were no p-values under the boundary of 0.05
 
 
 ```{r code}
