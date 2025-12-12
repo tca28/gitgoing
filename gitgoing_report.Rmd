@@ -22,9 +22,9 @@ tdata <- change
 
 #create dummy variables
 
-tdata$MHd <-ifelse(tdata$MH == "Yes", 1, 0)
-tdata$PHd <- ifelse(tdata$PH == "Yes", 1, 0)
-tdata$Beliefd <- ifelse(tdata$Belief == "Yes", 1, 0)
+tdata$MHd <-ifelse(tdata$MH == "Yes", 1, 0) #make a dummy variable for mental health, with 1 equivalent to yes
+tdata$PHd <- ifelse(tdata$PH == "Yes", 1, 0) #make a dummy variable for physical health, with 1 equivalent to yes
+tdata$Beliefd <- ifelse(tdata$Belief == "Yes", 1, 0) #make a dummy variable for belief, with 1 equivalent to yes
 
 #column names: change 
 
@@ -37,17 +37,20 @@ m2 <- glm(Beliefd ~ MHd, family = binomia, data = tdata) #regress impact of ment
 m3 <- glm(Beliefd ~ PHd + MHd, family = binomial, data = tdata) #regress impact of physical AND mental health
 
 
-table(summary(m1))
-table(summary(m2))
-table(summary(m3))
+table(summary(m1)) # table for impact of physical health on belief 
+table(summary(m2)) #table for impact of mental health on belief
+table(summary(m3)) # table for impact of physical and mental health on belief
 
 #interpretation - belief yes, they believe their condition will get worse, 
 
 ```
 
 
+This analysis found that individuals with on-going health issues DO/DO NOT change believe their condition will get worse while waiting for treatment
+
+
 ```{r code}
-#assess the prevalence of health issues in h
+
 
 
 
