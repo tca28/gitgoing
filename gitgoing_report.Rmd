@@ -15,3 +15,27 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+```{r code}
+#prepare data for binomial regression
+
+
+#what does all the data mean
+tdata <- change
+
+
+#carry out binomial regression
+
+m1 <- glm(Belief ~ PH, family = binomial, data = tdata) #regress impact of physical health
+
+m2 <- glm(Belief ~ MH, family = binomia, data = tdata) #regress impact of mental health
+
+m3 <- glm(Belief ~ PH + MH, family = binomial, data = tdata) #regress impact of physical AND mental health
+
+
+table(summary(m1))
+table(summary(m2))
+table(summary(m3))
+
+
+
+```
